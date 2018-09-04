@@ -126,5 +126,5 @@ buttons.forEach(element => {
     element.addEventListener('click', move)
 });
 
-// Add keyup event into the arrow buttons
+// Add keyup event into the key
 document.addEventListener('keyup', move);
