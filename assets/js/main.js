@@ -25,7 +25,9 @@ let ballStyle = {
     height: '30px',
     borderRadius: '50%',
     background: 'red',
-    position: 'absolute'
+    position: 'absolute',
+    left: 0,
+    top: 0
 }
 
 // Initiate ball top and left position
