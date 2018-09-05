@@ -57,6 +57,7 @@ const touchChecker = (positionValue, cb) => {
     if (positionValue < 0 || positionValue > 270) {
         cb()
         resetBall()
+        clearInterval(intervalID)
     }
 }
 
@@ -66,9 +67,41 @@ const showAlert = borderName => {
 }
 
 
+const leftMove = () => {
+    leftValue -= 30
+    ballWrapper.style.left = `${leftValue}px`
+
+
+    touchChecker(leftValue, () => {
+        showAlert('left')
+    })
+}
+const rightMove = () => {
+    leftValue += 30
+    ballWrapper.style.left = `${leftValue}px`
+    touchChecker(leftValue, () => {
+        showAlert('right')
+    })
+}
+const topMove = () => { // decrement the value and update the ball style
+    topValue -= 30
+    ballWrapper.style.top = `${topValue}px`
+
+    touchChecker(topValue, () => {
+        showAlert('top')
+    })
+}
+const bottomMove = () => { // increment the value and update the ball style
+    topValue += 30
+    ballWrapper.style.top = `${topValue}px`
+
+    touchChecker(topValue, () => {
+        showAlert('bottom')
+    })
+}
+var intervalID;
 // Ball moving functionality
 const move = (e) => {
-
     // Assume that nothing is clicked
     let currentClick = 'Nothing is clicked'
 
@@ -79,41 +112,35 @@ const move = (e) => {
 
     // Capture which button or key is pressed and moved the ball
     if (currentClick === 'left' || e.keyCode === 37) {
+        clearInterval(intervalID)
+        intervalID = setInterval(function() {
+            leftMove()
+        }, 200)
 
         // decrement the value and update the ball style
-        leftValue -= 30
-        ballWrapper.style.left = `${leftValue}px`
 
-
-        touchChecker(leftValue, () => {
-            showAlert('left')
-        })
     } else if (currentClick === 'right' || e.keyCode === 39) {
+        clearInterval(intervalID)
+        intervalID = setInterval(function() {
+            rightMove()
+        }, 200)
 
         // increment the value and update the ball style
-        leftValue += 30
-        ballWrapper.style.left = `${leftValue}px`
-        touchChecker(leftValue, () => {
-            showAlert('right')
-        })
+
     } else if (currentClick === 'top' || e.keyCode === 38) {
+        clearInterval(intervalID)
+        intervalID = setInterval(function() {
+            topMove()
+        }, 200)
 
-        // decrement the value and update the ball style
-        topValue -= 30
-        ballWrapper.style.top = `${topValue}px`
 
-        touchChecker(topValue, () => {
-            showAlert('top')
-        })
     } else if (currentClick === 'bottom' || e.keyCode === 40) {
+        clearInterval(intervalID)
+        intervalID = setInterval(function() {
+            bottomMove()
+        }, 200)
 
-        // increment the value and update the ball style
-        topValue += 30
-        ballWrapper.style.top = `${topValue}px`
 
-        touchChecker(topValue, () => {
-            showAlert('bottom')
-        })
     }
 
 
@@ -121,6 +148,8 @@ const move = (e) => {
 
 
 }
+
+
 
 
 // Add click event into the buttons
