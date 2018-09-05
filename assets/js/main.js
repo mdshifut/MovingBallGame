@@ -115,7 +115,7 @@ const move = (e) => {
         clearInterval(intervalID)
         intervalID = setInterval(function() {
             leftMove()
-        }, 200)
+        }, 250)
 
         // decrement the value and update the ball style
 
@@ -123,7 +123,7 @@ const move = (e) => {
         clearInterval(intervalID)
         intervalID = setInterval(function() {
             rightMove()
-        }, 200)
+        }, 250)
 
         // increment the value and update the ball style
 
@@ -131,14 +131,14 @@ const move = (e) => {
         clearInterval(intervalID)
         intervalID = setInterval(function() {
             topMove()
-        }, 200)
+        }, 250)
 
 
     } else if (currentClick === 'bottom' || e.keyCode === 40) {
         clearInterval(intervalID)
         intervalID = setInterval(function() {
             bottomMove()
-        }, 200)
+        }, 250)
 
 
     }
